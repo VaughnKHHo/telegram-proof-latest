@@ -40,16 +40,18 @@ class Proof:
             salt
         )
         source_data.submission_by = source_user_hash_64
-        proof_failed_reason = ""
-        verify_result = verify_token(
-            self.config,
-            source_data
-        )
-        is_data_authentic = verify_result
-        if is_data_authentic:
-            print(f"verify_result: {verify_result}")
-            is_data_authentic = verify_result.is_valid
-            proof_failed_reason = verify_result.error_text
+        # proof_failed_reason = ""
+        # verify_result = verify_token(
+        #     self.config,
+        #     source_data
+        # )
+        # is_data_authentic = verify_result
+        # if is_data_authentic:
+        #     print(f"verify_result: {verify_result}")
+        #     is_data_authentic = verify_result.is_valid
+        #     proof_failed_reason = verify_result.error_text
+
+        is_data_authentic = False
 
         cargo_data = CargoData(
             source_data = source_data,
@@ -74,7 +76,7 @@ class Proof:
             self.proof_response.valid = False
             self.proof_response.attributes = {
                 'proof_valid': False,
-                'proof_failed_reason': proof_failed_reason,
+                'proof_failed_reason': 'does proof respoonse attributes show up in logs?',
                 'did_score_content': False,
                 'source': source_data.source.name,
                 'revision': data_revision,
